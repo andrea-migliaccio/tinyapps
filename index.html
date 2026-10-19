@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tinyapps ✨</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<style>
+  :root {
+    --bg: #fff6ef;
+    --card: #ffffff;
+    --ink: #4a3b47;
+    --muted: #8a7a86;
+    --accent: #ff8fab;
+    --accent-2: #ffd6a5;
+    --shadow: 0 10px 30px rgba(255, 143, 171, .18);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Nunito", "Quicksand", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 10% 10%, #ffe3ec 0, transparent 40%),
+      radial-gradient(circle at 90% 20%, #e0f4ff 0, transparent 40%),
+      radial-gradient(circle at 50% 100%, #fff0c9 0, transparent 45%),
+      var(--bg);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 20px 60px; }
+  .top { display: flex; justify-content: flex-end; }
+  .lang {
+    display: inline-flex; background: #fff; border-radius: 999px; padding: 4px;
+    box-shadow: var(--shadow);
+  }
+  .lang button {
+    border: 0; background: transparent; font: inherit; font-weight: 700;
+    padding: 6px 14px; border-radius: 999px; cursor: pointer; color: var(--muted);
+    transition: all .2s;
+  }
+  .lang button.active { background: var(--accent); color: #fff; }
+  header { text-align: center; margin: 20px 0 40px; }
+  header .logo { font-size: 64px; display: inline-block; animation: bob 3s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(-8px) rotate(-4deg); } }
+  h1 { margin: 6px 0; font-size: 2.6rem; letter-spacing: -.5px; }
+  header p { margin: 0; color: var(--muted); font-size: 1.1rem; }
+  .grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+  @media (max-width: 460px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card); border-radius: 28px; padding: 24px;
+    box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px;
+    text-decoration: none; color: inherit; transition: transform .2s, box-shadow .2s;
+    border: 3px solid transparent;
+  }
+  .card:hover { transform: translateY(-4px) scale(1.01); border-color: var(--accent-2); }
+  .card .icon {
+    width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center;
+    font-size: 30px; background: var(--accent-2);
+  }
+  .card:nth-child(2) .icon { background: #cdeac0; }
+  .card:nth-child(3) .icon { background: #cfe8ff; }
+  .card:nth-child(4) .icon { background: #e7d4ff; }
+  .card h2 { margin: 0; font-size: 1.4rem; }
+  .card .host { font-size: .85rem; color: var(--accent); font-weight: 700; word-break: break-all; }
+  .card p { margin: 0; line-height: 1.5; }
+  .card img { width: 100%; border-radius: 16px; border: 1px solid #f0e4e8; }
+  .tag {
+    align-self: flex-start; font-size: .75rem; font-weight: 700; padding: 3px 10px;
+    border-radius: 999px; background: #fff0f4; color: var(--accent);
+  }
+  .links { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; padding-top: 6px; }
+  .btn {
+    text-decoration: none; font-weight: 700; padding: 8px 16px; border-radius: 999px;
+    background: var(--accent); color: #fff; font-size: .9rem; transition: filter .2s;
+  }
+  .btn.ghost { background: #fff0f4; color: var(--accent); }
+  .btn:hover { filter: brightness(1.06); }
+  footer { text-align: center; margin-top: 48px; color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="it" class="active">IT</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo">🧸</div>
+    <h1>tinyapps</h1>
+    <p data-i18n="subtitle"></p>
+  </header>
+
+  <main class="grid">
+    <article class="card">
+      <div class="icon">🔤</div>
+      <h2>Unwordle</h2>
+      <div class="host">unwordle.tinyapps.it</div>
+      <p data-i18n="unwordle"></p>
+      <span class="tag" data-i18n="tagOss"></span>
+      <div class="links">
+        <a class="btn" href="https://unwordle.tinyapps.it" data-i18n="open"></a>
+        <a class="btn ghost" href="https://github.com/andrea-migliaccio/un-wordle">GitHub</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🏎️</div>
+      <h2>F-Road</h2>
+      <div class="host">f-road.tinyapps.it</div>
+      <p data-i18n="froad"></p>
+      <div class="links">
+        <a class="btn" href="https://f-road.tinyapps.it" data-i18n="open"></a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🔍</div>
+      <h2>xq-ui</h2>
+      <div class="host">terminal · jq &amp; yq</div>
+      <p data-i18n="xq"></p>
+      <span class="tag" data-i18n="tagCli"></span>
+      <div class="links">
+        <a class="btn" href="https://github.com/andrea-migliaccio/xq-ui#xq-ui" data-i18n="github"></a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🐳</div>
+      <h2>Dockerino</h2>
+      <div class="host">terminal · Docker</div>
+      <img src="img/dockerino.png" alt="Dockerino screenshot" loading="lazy">
+      <p data-i18n="dockerino"></p>
+      <span class="tag" data-i18n="tagCli"></span>
+      <div class="links">
+        <a class="btn" href="https://github.com/andrea-migliaccio/dockerino#-dockerino" data-i18n="github"></a>
+      </div>
+    </article>
+  </main>
+
+  <footer data-i18n="footer"></footer>
+</div>
+
+<script>
+  const T = {
+    it: {
+      subtitle: "Piccole app, fatte con cura 💛",
+      unwordle: "Un clone di Wordle del New York Times: niente pubblicità, completamente open source.",
+      froad: "Una re-implementazione del classico gioco da bar, PC e Amiga (Offroad e Super Offroad), con funzionalità nuove: non vuole essere fedele al 100% all'originale.",
+      xq: "Un playground da terminale per jq e yq: le query girano in tempo reale mentre scrivi, con file picker per caricare e salvare i dati e, opzionalmente, un assistente AI che trasforma una descrizione in una query.",
+      dockerino: "Un'interfaccia da terminale per Docker: gestisci container, immagini e volumi da una dashboard interattiva. Log in streaming con filtri, shell, statistiche live e raggruppamento automatico dei progetti Compose.",
+      tagOss: "Open source · Senza pubblicità",
+      tagCli: "App da terminale",
+      open: "Apri",
+      github: "Vai su GitHub",
+      footer: "Fatto con ❤️ da Andrea"
+    },
+    en: {
+      subtitle: "Tiny apps, made with care 💛",
+      unwordle: "A clone of the New York Times' Wordle: no ads, completely open source.",
+      froad: "A re-implementation of the classic arcade, PC and Amiga game (Offroad and Super Offroad), with new features: it doesn't aim to be 100% faithful to the original.",
+      xq: "A terminal playground for jq and yq: queries run live as you type, with a file picker to load and save data and, optionally, an AI assistant that turns a plain-English description into a query.",
+      dockerino: "A terminal UI for Docker: manage containers, images and volumes from an interactive dashboard. Streaming logs with filters, shells, live stats and automatic Compose project grouping.",
+      tagOss: "Open source · Ad-free",
+      tagCli: "Terminal app",
+      open: "Open",
+      github: "View on GitHub",
+      footer: "Made with ❤️ by Andrea"
+    }
+  };
+
+  function setLang(l) {
+    document.documentElement.lang = l;
+    document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = T[l][el.dataset.i18n]);
+    document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === l));
+    localStorage.setItem("lang", l);
+  }
+  document.querySelectorAll(".lang button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
+  setLang(localStorage.getItem("lang") || "it");
+</script>
+</body>
+</html>
