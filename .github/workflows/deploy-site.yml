@@ -20,4 +20,3 @@ jobs:
           action: upload
           app_location: /
           skip_app_build: true
-          skip_api_build: true
