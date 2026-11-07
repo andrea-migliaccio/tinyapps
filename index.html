@@ -3,170 +3,328 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>tinyapps ✨</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<title>tinyapps · small indie game studio</title>
+<meta name="description" content="tinyapps è un piccolo studio indie che crea giochi semplici, fatti per divertire. Scribble Racers, Off Course e altri.">
+<meta property="og:title" content="tinyapps · small indie game studio">
+<meta property="og:description" content="Small games, made for fun.">
+<meta property="og:image" content="https://www.tinyapps.it/img/off-course-cover.webp">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
 <style>
   :root {
-    --bg: #fff6ef;
+    --bg: #faf6f0;
     --card: #ffffff;
-    --ink: #4a3b47;
-    --muted: #8a7a86;
-    --accent: #ff8fab;
-    --accent-2: #ffd6a5;
-    --shadow: 0 10px 30px rgba(255, 143, 171, .18);
+    --ink: #2b2530;
+    --muted: #6f6673;
+    --line: #ece4da;
+    --accent: #f26b1d;
+    --accent-soft: #fff1e7;
+    --blue: #2f5fd0;
+    --shadow: 0 1px 2px rgba(43, 37, 48, .06), 0 12px 32px rgba(43, 37, 48, .08);
+    --radius: 20px;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: "Nunito", "Quicksand", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color: var(--ink);
-    background:
-      radial-gradient(circle at 10% 10%, #ffe3ec 0, transparent 40%),
-      radial-gradient(circle at 90% 20%, #e0f4ff 0, transparent 40%),
-      radial-gradient(circle at 50% 100%, #fff0c9 0, transparent 45%),
-      var(--bg);
-    min-height: 100vh;
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 20px 60px; }
-  .top { display: flex; justify-content: flex-end; }
-  .lang {
-    display: inline-flex; background: #fff; border-radius: 999px; padding: 4px;
-    box-shadow: var(--shadow);
+  a { color: inherit; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; letter-spacing: -.3px; text-decoration: none; }
+  .brand .mark {
+    width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+    background: var(--ink); color: #fff; font-size: 18px;
   }
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+  .nav-right a.navlink { text-decoration: none; color: var(--muted); font-weight: 600; font-size: .95rem; }
+  .nav-right a.navlink:hover { color: var(--ink); }
+  .lang { display: inline-flex; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 3px; }
   .lang button {
-    border: 0; background: transparent; font: inherit; font-weight: 700;
-    padding: 6px 14px; border-radius: 999px; cursor: pointer; color: var(--muted);
-    transition: all .2s;
+    border: 0; background: transparent; font: inherit; font-weight: 700; font-size: .8rem;
+    padding: 5px 11px; border-radius: 999px; cursor: pointer; color: var(--muted);
   }
-  .lang button.active { background: var(--accent); color: #fff; }
-  header { text-align: center; margin: 20px 0 40px; }
-  header .logo { font-size: 64px; display: inline-block; animation: bob 3s ease-in-out infinite; }
-  @keyframes bob { 50% { transform: translateY(-8px) rotate(-4deg); } }
-  h1 { margin: 6px 0; font-size: 2.6rem; letter-spacing: -.5px; }
-  header p { margin: 0; color: var(--muted); font-size: 1.1rem; }
-  .grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
-  @media (max-width: 460px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--card); border-radius: 28px; padding: 24px;
-    box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px;
-    text-decoration: none; color: inherit; transition: transform .2s, box-shadow .2s;
-    border: 3px solid transparent;
+  .lang button.active { background: var(--ink); color: #fff; }
+  @media (max-width: 560px) { .nav-right a.navlink { display: none; } }
+
+  /* Hero */
+  .hero { padding: 56px 0 64px; display: grid; gap: 28px; }
+  .eyebrow {
+    display: inline-block; font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent);
   }
-  .card:hover { transform: translateY(-4px) scale(1.01); border-color: var(--accent-2); }
-  .card .icon {
-    width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center;
-    font-size: 30px; background: var(--accent-2);
+  .hero h1 { margin: 10px 0 0; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.08; letter-spacing: -1.5px; max-width: 16ch; }
+  .hero .lead { margin: 0; font-size: 1.15rem; color: var(--muted); max-width: 62ch; }
+  .support {
+    display: flex; gap: 16px; align-items: flex-start; background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 20px 22px; max-width: 760px;
   }
-  .card:nth-child(2) .icon { background: #cdeac0; }
-  .card:nth-child(3) .icon { background: #cfe8ff; }
-  .card:nth-child(4) .icon { background: #e7d4ff; }
-  .card h2 { margin: 0; font-size: 1.4rem; }
-  .card .host { font-size: .85rem; color: var(--accent); font-weight: 700; word-break: break-all; }
-  .card p { margin: 0; line-height: 1.5; }
-  .card img { width: 100%; border-radius: 16px; border: 1px solid #f0e4e8; }
-  .tag {
-    align-self: flex-start; font-size: .75rem; font-weight: 700; padding: 3px 10px;
-    border-radius: 999px; background: #fff0f4; color: var(--accent);
+  .support .ico { font-size: 26px; line-height: 1; }
+  .support p { margin: 0; color: var(--ink); }
+  .support a { color: var(--accent); font-weight: 700; }
+
+  section { padding: 8px 0 56px; }
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  .section-head h2 { margin: 0; font-size: 1.6rem; letter-spacing: -.5px; }
+  .section-head span { color: var(--muted); font-size: .95rem; }
+
+  /* Featured games */
+  .featured { display: grid; gap: 28px; grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 860px) { .featured { grid-template-columns: 1fr; } }
+  .game {
+    background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; border: 1px solid var(--line);
+    transition: transform .25s ease, box-shadow .25s ease;
   }
-  .links { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; padding-top: 6px; }
-  .btn {
-    text-decoration: none; font-weight: 700; padding: 8px 16px; border-radius: 999px;
-    background: var(--accent); color: #fff; font-size: .9rem; transition: filter .2s;
+  .game:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(43,37,48,.06), 0 22px 48px rgba(43,37,48,.14); }
+  .media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #efe6da; }
+  .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .45s ease, transform .6s ease; }
+  .media img.shot { opacity: 0; }
+  .game:hover .media img.shot { opacity: 1; }
+  .game:hover .media img { transform: scale(1.03); }
+  .game.sr .media { background: #ecebe6; }
+  .game.sr .media img.cover { object-fit: contain; }
+  .game.oc .media { background: #ecd6b3; }
+  .game.oc .media img.cover { object-fit: contain; padding: 12px; }
+  .status {
+    position: absolute; top: 14px; left: 14px; z-index: 2; font-size: .75rem; font-weight: 800;
+    padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.92); color: var(--ink);
+    backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,.08);
   }
-  .btn.ghost { background: #fff0f4; color: var(--accent); }
-  .btn:hover { filter: brightness(1.06); }
-  footer { text-align: center; margin-top: 48px; color: var(--muted); font-size: .9rem; }
+  .status::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; vertical-align: 1px; background: #2fb36b; }
+  .status.dev::before { background: #f2a81d; }
+  .game .body { padding: 24px 26px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .game h3 { margin: 0; font-size: 1.6rem; letter-spacing: -.5px; }
+  .game .tagline { margin: 0; font-weight: 700; color: var(--accent); }
+  .game.sr .tagline { color: #d0342c; }
+  .game p.desc { margin: 0; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: .75rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #f4efe8; color: var(--muted); }
+  .stores { margin-top: auto; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .store {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    padding: 9px 16px 9px 12px; border-radius: 12px; background: var(--ink); color: #fff;
+    min-height: 48px; transition: filter .2s, transform .2s;
+  }
+  .store:hover { filter: brightness(1.2); }
+  .store svg { width: 24px; height: 24px; flex: none; }
+  .store .lbl { display: flex; flex-direction: column; line-height: 1.1; }
+  .store .lbl small { font-size: .68rem; opacity: .75; font-weight: 600; }
+  .store .lbl b { font-size: 1rem; }
+  .store.itch { background: #fa5c5c; }
+  .store.disabled {
+    background: #e9e4de; color: #9a9298; cursor: not-allowed; pointer-events: none; position: relative;
+  }
+  .store.disabled svg { filter: grayscale(1); opacity: .55; }
+  .store .lbl small.soon { color: var(--accent); opacity: 1; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: .62rem; }
+
+  /* Other games */
+  .others { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .mini {
+    display: flex; gap: 18px; align-items: flex-start; background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 20px; text-decoration: none; transition: transform .2s, border-color .2s;
+  }
+  .mini:hover { transform: translateY(-3px); border-color: #dccfbf; }
+  .mini .icon { width: 52px; height: 52px; flex: none; border-radius: 14px; display: grid; place-items: center; font-size: 26px; background: #e9f3e3; }
+  .mini:nth-child(2) .icon { background: #e3edfb; }
+  .mini h3 { margin: 0 0 2px; font-size: 1.15rem; }
+  .mini .host { font-size: .8rem; font-weight: 700; color: var(--accent); }
+  .mini p { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
+  .mini .go { margin-top: 10px; font-weight: 700; font-size: .9rem; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: .9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+  footer a { color: var(--ink); font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top">
-    <div class="lang" role="group" aria-label="Language">
-      <button data-lang="it" class="active">IT</button>
-      <button data-lang="en">EN</button>
+  <nav>
+    <a class="brand" href="/"><span class="mark">▲</span>tinyapps</a>
+    <div class="nav-right">
+      <a class="navlink" href="#games" data-i18n="navGames"></a>
+      <a class="navlink" href="https://tinyapps.itch.io" target="_blank" rel="noopener">itch.io</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="it" class="active">IT</button>
+        <button data-lang="en">EN</button>
+      </div>
     </div>
-  </div>
+  </nav>
 
-  <header>
-    <div class="logo">🧸</div>
-    <h1>tinyapps</h1>
-    <p data-i18n="subtitle"></p>
+  <header class="hero">
+    <div>
+      <span class="eyebrow" data-i18n="eyebrow"></span>
+      <h1 data-i18n="title"></h1>
+    </div>
+    <p class="lead" data-i18n="lead"></p>
+    <div class="support">
+      <div class="ico">☕</div>
+      <p data-i18n-html="support"></p>
+    </div>
   </header>
 
-  <main class="grid">
-    <article class="card">
-      <div class="icon">🔤</div>
-      <h2>Unwordle</h2>
-      <div class="host">unwordle.tinyapps.it</div>
-      <p data-i18n="unwordle"></p>
-      <span class="tag" data-i18n="tagOss"></span>
-      <div class="links">
-        <a class="btn" href="https://unwordle.tinyapps.it" data-i18n="open"></a>
-        <a class="btn ghost" href="https://github.com/andrea-migliaccio/un-wordle">GitHub</a>
-      </div>
-    </article>
+  <section id="games">
+    <div class="section-head">
+      <h2 data-i18n="featured"></h2>
+    </div>
+    <div class="featured">
+      <article class="game sr">
+        <a class="media" href="https://tinyapps.itch.io/scribble-racers" target="_blank" rel="noopener" aria-label="Scribble Racers su itch.io">
+          <span class="status" data-i18n="released"></span>
+          <img class="cover" src="img/scribble-racers-cover.webp" alt="Scribble Racers" width="630" height="500">
+          <img class="shot" src="img/scribble-racers-shot.webp" alt="" loading="lazy" width="1280" height="720">
+        </a>
+        <div class="body">
+          <h3>Scribble Racers</h3>
+          <p class="tagline" data-i18n="srTag"></p>
+          <p class="desc" data-i18n="srDesc"></p>
+          <div class="chips">
+            <span class="chip" data-i18n="srC1"></span>
+            <span class="chip" data-i18n="srC2"></span>
+            <span class="chip" data-i18n="srC3"></span>
+            <span class="chip">Windows · macOS</span>
+          </div>
+          <div class="stores">
+            <a class="store itch" href="https://tinyapps.itch.io/scribble-racers" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="itch-path" d="M3.13 1.338C2.08 1.96.02 4.328 0 4.95v1.03c0 1.303 1.22 2.45 2.325 2.45 1.33 0 2.436-1.102 2.436-2.41 0 1.308 1.07 2.41 2.4 2.41 1.328 0 2.362-1.102 2.362-2.41 0 1.308 1.137 2.41 2.466 2.41h.024c1.33 0 2.466-1.102 2.466-2.41 0 1.308 1.034 2.41 2.363 2.41 1.33 0 2.4-1.102 2.4-2.41 0 1.308 1.106 2.41 2.435 2.41C22.78 8.43 24 7.282 24 5.98V4.95c-.02-.62-2.082-2.99-3.13-3.612-3.253-.114-5.508-.134-8.87-.133-3.362 0-7.945.053-8.87.133zm6.376 6.477a2.74 2.74 0 0 1-.468.602c-.5.49-1.19.795-1.947.795a2.786 2.786 0 0 1-1.95-.795c-.182-.178-.32-.37-.446-.59-.127.222-.303.412-.486.59a2.788 2.788 0 0 1-1.95.795c-.092 0-.187-.025-.264-.052-.107 1.113-.152 2.176-.168 2.95v.005l-.006 1.167c.02 2.334-.23 7.564 1.03 8.85 1.952.454 5.545.662 9.15.663 3.605 0 7.198-.21 9.15-.664 1.26-1.284 1.010-6.514 1.030-8.848l-.006-1.167v-.004c-.016-.775-.06-1.838-.168-2.95-.077.026-.172.052-.263.052a2.788 2.788 0 0 1-1.95-.795c-.184-.178-.36-.368-.486-.59-.127.22-.265.412-.447.59a2.786 2.786 0 0 1-1.95.794c-.76 0-1.446-.303-1.948-.793a2.74 2.74 0 0 1-.468-.602 2.738 2.738 0 0 1-.463.602 2.787 2.787 0 0 1-1.95.794h-.16a2.787 2.787 0 0 1-1.95-.793 2.738 2.738 0 0 1-.464-.602zm-2.004 2.59v.002c.795.002 1.5 0 2.373.953.687-.072 1.406-.108 2.125-.107.72 0 1.438.035 2.126.107.873-.953 1.578-.95 2.372-.953.375 0 1.876 0 2.92 2.934l1.123 4.028c.832 2.997-.266 3.07-1.636 3.073-2.03-.076-3.156-1.55-3.156-3.023-1.124.184-2.436.276-3.75.276-1.312 0-2.624-.092-3.748-.276 0 1.472-1.125 2.947-3.156 3.023-1.37-.003-2.468-.076-1.636-3.073l1.122-4.027c1.045-2.934 2.546-2.934 2.92-2.934zM12 12.714c-.002.002-2.14 1.964-2.523 2.662l1.400-.056v1.220c0 .056.560.033 1.123.007.562.026 1.123.05 1.123-.008v-1.220l1.400.057C14.140 14.677 12 12.713 12 12.713z"/></svg>
+              <span class="lbl"><small data-i18n="playOn"></small><b>itch.io</b></span>
+            </a>
+            <span class="store disabled" aria-disabled="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d7fe" d="M3.6 1.8 13.4 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2z"/><path fill="#00f076" d="M16.8 8.6 13.4 12 3.6 1.8c.2-.1.5-.1.8 0 .2 0 .4.1.6.2l11.8 6.6z"/><path fill="#ffc900" d="m20.4 10.6-3.6-2-3.4 3.4 3.4 3.4 3.6-2c.6-.3.9-.9.9-1.4s-.3-1.1-.9-1.4z"/><path fill="#f63448" d="M16.8 15.4 5 22c-.4.2-.9.3-1.4.2L13.4 12l3.4 3.4z"/></svg>
+              <span class="lbl"><small class="soon">Coming soon</small><b>Google Play</b></span>
+            </span>
+          </div>
+        </div>
+      </article>
 
-    <article class="card">
-      <div class="icon">🏎️</div>
-      <h2>F-Road</h2>
-      <div class="host">f-road.tinyapps.it</div>
-      <p data-i18n="froad"></p>
-      <div class="links">
-        <a class="btn" href="https://f-road.tinyapps.it" data-i18n="open"></a>
-      </div>
-    </article>
+      <article class="game oc">
+        <a class="media" href="https://tinyapps.itch.io/off-course" target="_blank" rel="noopener" aria-label="Off Course su itch.io">
+          <span class="status dev" data-i18n="playtest"></span>
+          <img class="cover" src="img/off-course-cover.webp" alt="Off Course" width="900" height="683">
+          <img class="shot" src="img/off-course-shot.webp" alt="" loading="lazy" width="1280" height="720">
+        </a>
+        <div class="body">
+          <h3>Off Course</h3>
+          <p class="tagline" data-i18n="ocTag"></p>
+          <p class="desc" data-i18n="ocDesc"></p>
+          <div class="chips">
+            <span class="chip" data-i18n="ocC1"></span>
+            <span class="chip" data-i18n="ocC2"></span>
+            <span class="chip" data-i18n="ocC3"></span>
+            <span class="chip">Windows · macOS · Linux</span>
+          </div>
+          <div class="stores">
+            <a class="store itch" href="https://tinyapps.itch.io/off-course" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#itch-path"/></svg>
+              <span class="lbl"><small data-i18n="playOn"></small><b>itch.io</b></span>
+            </a>
+            <span class="store disabled" aria-disabled="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d7fe" d="M3.6 1.8 13.4 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2z"/><path fill="#00f076" d="M16.8 8.6 13.4 12 3.6 1.8c.2-.1.5-.1.8 0 .2 0 .4.1.6.2l11.8 6.6z"/><path fill="#ffc900" d="m20.4 10.6-3.6-2-3.4 3.4 3.4 3.4 3.6-2c.6-.3.9-.9.9-1.4s-.3-1.1-.9-1.4z"/><path fill="#f63448" d="M16.8 15.4 5 22c-.4.2-.9.3-1.4.2L13.4 12l3.4 3.4z"/></svg>
+              <span class="lbl"><small class="soon">Coming soon</small><b>Google Play</b></span>
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 
-    <article class="card">
-      <div class="icon">🔍</div>
-      <h2>xq-ui</h2>
-      <div class="host">terminal · jq &amp; yq</div>
-      <p data-i18n="xq"></p>
-      <span class="tag" data-i18n="tagCli"></span>
-      <div class="links">
-        <a class="btn" href="https://github.com/andrea-migliaccio/xq-ui#xq-ui" data-i18n="github"></a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="icon">🐳</div>
-      <h2>Dockerino</h2>
-      <div class="host">terminal · Docker</div>
-      <img src="img/dockerino.png" alt="Dockerino screenshot" loading="lazy">
-      <p data-i18n="dockerino"></p>
-      <span class="tag" data-i18n="tagCli"></span>
-      <div class="links">
-        <a class="btn" href="https://github.com/andrea-migliaccio/dockerino#-dockerino" data-i18n="github"></a>
-      </div>
-    </article>
-  </main>
-
-  <footer data-i18n="footer"></footer>
+  <section>
+    <div class="section-head">
+      <h2 data-i18n="moreGames"></h2>
+      <span data-i18n="moreSub"></span>
+    </div>
+    <div class="others">
+      <a class="mini" href="https://unwordle.tinyapps.it">
+        <div class="icon">🔤</div>
+        <div>
+          <h3>Unwordle</h3>
+          <div class="host">unwordle.tinyapps.it</div>
+          <p data-i18n="unwordle"></p>
+          <div class="go" data-i18n="playBrowser"></div>
+        </div>
+      </a>
+      <a class="mini" href="https://f-road.tinyapps.it">
+        <div class="icon">🏎️</div>
+        <div>
+          <h3>F-Road</h3>
+          <div class="host">f-road.tinyapps.it</div>
+          <p data-i18n="froad"></p>
+          <div class="go" data-i18n="playBrowser"></div>
+        </div>
+      </a>
+    </div>
+  </section>
 </div>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> tinyapps · <span data-i18n="footer"></span></span>
+    <a href="https://tinyapps.itch.io" target="_blank" rel="noopener">tinyapps.itch.io</a>
+  </div>
+</footer>
 
 <script>
   const T = {
     it: {
-      subtitle: "Piccole app, fatte con cura 💛",
-      unwordle: "Un clone di Wordle del New York Times: niente pubblicità, completamente open source.",
-      froad: "Una re-implementazione del classico gioco da bar, PC e Amiga (Offroad e Super Offroad), con funzionalità nuove: non vuole essere fedele al 100% all'originale.",
-      xq: "Un playground da terminale per jq e yq: le query girano in tempo reale mentre scrivi, con file picker per caricare e salvare i dati e, opzionalmente, un assistente AI che trasforma una descrizione in una query.",
-      dockerino: "Un'interfaccia da terminale per Docker: gestisci container, immagini e volumi da una dashboard interattiva. Log in streaming con filtri, shell, statistiche live e raggruppamento automatico dei progetti Compose.",
-      tagOss: "Open source · Senza pubblicità",
-      tagCli: "App da terminale",
-      open: "Apri",
-      github: "Vai su GitHub",
+      navGames: "Giochi",
+      eyebrow: "Piccolo studio indie",
+      title: "Giochi piccoli, fatti per divertirsi.",
+      lead: "tinyapps è un minuscolo game studio indipendente. Creiamo giochi semplici, con cura, per il puro piacere di farli. Se riusciamo a strappare un sorriso a qualcuno, abbiamo già vinto.",
+      support: "Non lo facciamo per arricchirci: i giochi sono gratuiti (paghi quanto vuoi). Ma se ti piacciono e vuoi darci una mano, una <a href=\"https://tinyapps.itch.io\" target=\"_blank\" rel=\"noopener\">donazione su itch.io</a> o un acquisto in-app sono sempre graditissimi e ci aiutano a fare il prossimo gioco. Grazie! 💛",
+      featured: "I nostri giochi",
+      released: "Disponibile",
+      playtest: "Playtest · in sviluppo",
+      srTag: "Gare a turni su carta a quadretti",
+      srDesc: "Il classico gioco carta e penna delle corse, rifatto da zero con un look disegnato a mano. A ogni turno scegli uno dei nove cerchi: accelera, frena o sterza di un quadretto. Pianifica la traiettoria, tieni il ritmo… e non toccare i muri a matita!",
+      srC1: "Campagna da 50 piste",
+      srC2: "Sfida giornaliera",
+      srC3: "Editor di piste",
+      ocTag: "Un rally raid infinito",
+      ocDesc: "Un pilota, una moto e una pista che non finisce mai: dune, canyon, savana, foreste, saline, montagne e neve. Ripreso dall'elicottero come una diretta TV, con il roadbook da leggere a ogni bivio: sbaglia strada e sei OFF COURSE.",
+      ocC1: "10 biomi",
+      ocC2: "Meteo e giorno/notte",
+      ocC3: "30 easter egg",
+      playOn: "Gioca su",
+      moreGames: "Altri giochi",
+      moreSub: "Giocabili subito nel browser",
+      unwordle: "Un clone di Wordle del New York Times: nessuna pubblicità, solo la parola del giorno.",
+      froad: "Una reinterpretazione del classico da sala giochi, PC e Amiga (Offroad e Super Offroad), con qualche novità.",
+      playBrowser: "Gioca ora →",
       footer: "Fatto con ❤️ da Andrea"
     },
     en: {
-      subtitle: "Tiny apps, made with care 💛",
-      unwordle: "A clone of the New York Times' Wordle: no ads, completely open source.",
-      froad: "A re-implementation of the classic arcade, PC and Amiga game (Offroad and Super Offroad), with new features: it doesn't aim to be 100% faithful to the original.",
-      xq: "A terminal playground for jq and yq: queries run live as you type, with a file picker to load and save data and, optionally, an AI assistant that turns a plain-English description into a query.",
-      dockerino: "A terminal UI for Docker: manage containers, images and volumes from an interactive dashboard. Streaming logs with filters, shells, live stats and automatic Compose project grouping.",
-      tagOss: "Open source · Ad-free",
-      tagCli: "Terminal app",
-      open: "Open",
-      github: "View on GitHub",
+      navGames: "Games",
+      eyebrow: "Tiny indie studio",
+      title: "Small games, made for fun.",
+      lead: "tinyapps is a tiny independent game studio. We make simple games, with care, just for the joy of making them. If we manage to make someone smile, we've already won.",
+      support: "We're not in it to get rich: the games are free (pay what you want). But if you enjoy them and want to help out, a <a href=\"https://tinyapps.itch.io\" target=\"_blank\" rel=\"noopener\">donation on itch.io</a> or an in-app purchase is always hugely appreciated and helps us make the next game. Thank you! 💛",
+      featured: "Our games",
+      released: "Out now",
+      playtest: "Playtest · in development",
+      srTag: "Turn-based racing on squared paper",
+      srDesc: "The classic pen-and-paper racetrack game, rebuilt from scratch with a hand-drawn look. Every turn you pick one of nine circles: speed up, slow down or steer by one square. Plan your line, keep your momentum… and don't touch the pencil walls!",
+      srC1: "50-track campaign",
+      srC2: "Daily challenge",
+      srC3: "Track editor",
+      ocTag: "An endless rally raid",
+      ocDesc: "One rider, one motorbike and a track that never ends: dunes, canyons, savanna, forests, salt flats, mountains and snow. Filmed from a helicopter like live TV, with a roadbook to read at every split: pick the wrong way and you're OFF COURSE.",
+      ocC1: "10 biomes",
+      ocC2: "Weather & day/night",
+      ocC3: "30 easter eggs",
+      playOn: "Play on",
+      moreGames: "More games",
+      moreSub: "Play instantly in your browser",
+      unwordle: "A clone of the New York Times' Wordle: no ads, just the word of the day.",
+      froad: "A take on the arcade, PC and Amiga classic (Offroad and Super Offroad), with a few new twists.",
+      playBrowser: "Play now →",
       footer: "Made with ❤️ by Andrea"
     }
   };
@@ -174,11 +332,13 @@
   function setLang(l) {
     document.documentElement.lang = l;
     document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = T[l][el.dataset.i18n]);
+    document.querySelectorAll("[data-i18n-html]").forEach(el => el.innerHTML = T[l][el.dataset.i18nHtml]);
     document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === l));
     localStorage.setItem("lang", l);
   }
   document.querySelectorAll(".lang button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
-  setLang(localStorage.getItem("lang") || "it");
+  setLang(localStorage.getItem("lang") || ((navigator.language || "it").startsWith("it") ? "it" : "en"));
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
