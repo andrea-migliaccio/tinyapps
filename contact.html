@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contatti · Tiny Apps</title>
+<meta name="description" content="Contatta Tiny Apps, piccolo studio indie di videogiochi: my@tinyapps.it">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="/"><span class="mark">▲</span><span class="name">Tiny Apps</span></a>
+    <div class="nav-right">
+      <a class="navlink" href="/#games" data-i18n="navGames"></a>
+      <a class="navlink opt" href="https://tinyapps.itch.io" target="_blank" rel="noopener">itch.io</a>
+      <a class="navlink" href="/contact.html" data-i18n="navContact" aria-current="page"></a>
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="it" class="active">IT</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="contact">
+    <span class="eyebrow" data-i18n="eyebrow"></span>
+    <h1 data-i18n="title"></h1>
+    <p class="lead" data-i18n="lead"></p>
+
+    <div class="mailbox">
+      <div class="ico">✉️</div>
+      <div class="addr">
+        <small>Email</small>
+        <a href="mailto:my@tinyapps.it">my@tinyapps.it</a>
+      </div>
+      <a class="btn" href="mailto:my@tinyapps.it" data-i18n="write"></a>
+      <button class="btn ghost" type="button" id="copy" data-i18n="copy"></button>
+    </div>
+
+    <p class="note" data-i18n-html="note"></p>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Tiny Apps · <span data-i18n="footer"></span></span>
+    <span><a href="/contact.html" data-i18n="navContact"></a> · <a href="https://tinyapps.itch.io" target="_blank" rel="noopener">tinyapps.itch.io</a></span>
+  </div>
+</footer>
+
+<script>
+  window.T = {
+    it: {
+      navGames: "Giochi",
+      navContact: "Contatti",
+      eyebrow: "Contatti",
+      title: "Scrivici due righe.",
+      lead: "Hai trovato un bug, hai un'idea per un gioco, vuoi parlare di una collaborazione o semplicemente salutare? Ci fa sempre piacere ricevere un messaggio.",
+      write: "Scrivi una mail",
+      copy: "Copia indirizzo",
+      copied: "Copiato ✓",
+      note: "Rispondiamo appena possibile: siamo uno studio piccolissimo, abbi un po' di pazienza 🙂 Per i feedback sui giochi puoi anche lasciare un commento sulle pagine <a href=\"https://tinyapps.itch.io\" target=\"_blank\" rel=\"noopener\">itch.io</a>.",
+      footer: "Fatto con ❤️ da Andrea"
+    },
+    en: {
+      navGames: "Games",
+      navContact: "Contact",
+      eyebrow: "Contact",
+      title: "Drop us a line.",
+      lead: "Found a bug, have an idea for a game, want to talk about a collaboration or just say hi? We always love hearing from you.",
+      write: "Send an email",
+      copy: "Copy address",
+      copied: "Copied ✓",
+      note: "We'll get back to you as soon as we can: we're a very tiny studio, so please be patient 🙂 For game feedback you can also leave a comment on our <a href=\"https://tinyapps.itch.io\" target=\"_blank\" rel=\"noopener\">itch.io</a> pages.",
+      footer: "Made with ❤️ by Andrea"
+    }
+  };
+</script>
+<script src="site.js"></script>
+<script>
+  const copyBtn = document.getElementById("copy");
+  copyBtn.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText("my@tinyapps.it");
+      const l = document.documentElement.lang;
+      copyBtn.textContent = T[l].copied;
+      setTimeout(() => copyBtn.textContent = T[document.documentElement.lang].copy, 1800);
+    } catch { location.href = "mailto:my@tinyapps.it"; }
+  };
+</script>
+</body>
+</html>
