@@ -107,6 +107,7 @@ section { padding: 8px 0 56px; }
 .store .lbl small { font-size: .68rem; opacity: .75; font-weight: 600; }
 .store .lbl b { font-size: 1rem; }
 .store.itch { background: #fa5c5c; }
+.store.tester { background: #01875f; }
 .store.disabled {
   background: #e9e4de; color: #9a9298; cursor: not-allowed; pointer-events: none; position: relative;
 }

@@ -9,3 +9,6 @@ function setLang(l) {
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
 setLang(localStorage.getItem("lang") || ((navigator.language || "it").startsWith("it") ? "it" : "en"));
 document.getElementById("year").textContent = new Date().getFullYear();
+// Links with data-android / data-pc: pick the target based on the browser platform.
+const isAndroid = /Android/i.test(navigator.userAgent);
+document.querySelectorAll("[data-android][data-pc]").forEach(a => a.href = isAndroid ? a.dataset.android : a.dataset.pc);
